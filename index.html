@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation form</title>
+    <script  src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #25242e;
+    }
+
+    .container {
+        position: relative;
+        /* top: 50%; */
+        width: 375px;
+        height: 460px;
+        background: black;
+        border: 10px solid #1b1a22;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 15px;
+        overflow: hidden;
+        inset: 0;
+        box-shadow: -4px -4px 5px #733d6f, 5px 5px 5px #471548a8;
+    }
+
+    /* .box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    } */
+    
+
+    .box h1 {
+        color: #ac0cac;
+        margin-bottom: 20px;
+    }
+
+    .box {
+        position: absolute;
+        width: 371px;
+        height: 456px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: #25242e;
+        border-radius: 3px;
+        z-index: 2;
+    }
+
+    .user {
+        position: relative;
+        margin: 24px 20px;
+        background: #25242e;
+        box-shadow: -2px -2px 2px #484755d6, 4px 4px 16px black, -2px 2px 1px #474753d6;
+        border-radius: 22px;
+        width: 284px;
+        height: 39px;
+
+    }
+
+    /* .user img {
+        position: relative;
+        top: -27px;
+        width: 16px;
+        right: -12px;
+        z-index: 9999;
+
+    } */
+
+    .user input {
+        width: 253px;
+        height: 39px;
+        background: transparent;
+        border: 0;
+        outline: 0;
+        position: relative;
+        left: -1px;
+        top: -1px;
+        border-radius: 22px;
+        padding-left: 32px;
+        color: white;
+    }
+
+    .user i {
+        position: absolute;
+        left: 35px;
+        top: 12px;
+        font-weight: 100;
+        font-size: 13px;
+        font-style: normal;
+        pointer-events: none;
+        transition: 0.5s;
+        color: #bfb6b6;
+        z-index: 99;
+    }
+    .user span{
+        font-size: 11px;
+    color: red;
+    position: absolute;
+    right: 5px;
+    top: 14px;
+    letter-spacing: 0.5px;
+    }
+
+    /* span img{
+        margin: 24px;
+    } */
+
+    .button span{
+        font-size: 11px;
+    color: red;
+    position: absolute;
+    right: 5px;
+    top: 14px;
+    letter-spacing: 0.5px;
+    }
+    #submit-error{
+        position: absolute;
+    bottom: 10px;
+    left: 17px;
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
+    }
+
+    .user input:focus~i,
+    .user input:valid~i {
+        transform: translateY(-20px) translateX(-7px);
+            /* transform: translateY(-14px) translateX(-18px); */
+        font-size: 0.9em;
+        border: 1px solid #ac0cac;
+        border-radius: 9px;
+        padding: 0 4px;
+        color: red;
+        z-index: 99000999898989;
+        background: #25242e;
+    }
+
+    .user input:focus,
+    .user input:valid {
+        border: 1px solid #ac0cac;
+        /* z-index: 0; */
+    }
+
+    /* .user input:checked{
+        border: 1px solid #ac0cac;
+    } */
+    #ton {
+        box-shadow: -2px -3px 2px #c15fb6d6, 0px 0px 24px black, -2px 0px 2px #c15fb6d6;
+        border-radius: 22px;
+        width: 284px;
+        height: 39px;
+        background: #ac0cac;
+        border: 0;
+        outline: 0;
+        /* margin-top: 17px; */
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+    }
+    .button{
+        text-align: center;
+    }
+    form{
+        text-align: center;
+    }
+
+
+
+    @media only screen and (max-width:500px) {
+        .container {
+            width: 320px;
+        }
+
+        .box {
+            width: 316px;
+        }
+
+        .user {
+            width: 250px;
+        }
+
+        .button input {
+            width: 250px;
+        }
+
+        .container::after {
+            width: 200%;
+        }
+
+        .user input {
+            width: 217px;
+        }
+
+    }
+
+    img{
+        width: 13px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="box" >
+            <h1>Log In</h1>
+            <form action="" onsubmit="return validateform()">
+            <div class="user">
+
+                <input type="text" id="text" placeholder="Enter Name" >
+                <!-- <img src="./user.png"> -->
+                <i class="error" id="nameerror">*</i>
+                
+            </div>
+            <div class="user">
+
+                <input type="email" id="email" placeholder="Enter Email id">
+                <!-- <img src="./email.png"> -->
+                <i class="error" id="emailerror">*</i>
+                
+            </div>
+            <div class="user">
+
+                <input type="text" id="phone" placeholder="Enter Phone no.">
+                <!-- <img src="./password1.png"> -->
+                <i class="error" id="phoneerror">*</i>
+                
+            </div>
+            <div class="user">
+
+                <input type="password" id="password" placeholder="create a password">
+                <!-- <img src="./password2.png"> -->
+                <i class="error" id="passerror">*</i>
+                
+                
+            </div>
+                <input type="submit" value="Submit" style=" color: white; cursor: pointer;" id="ton" >
+
+                </form>
+            </div>
+    </div>
+
+
+    <script>
+       let text = document.getElementById('text');
+       let email = document.getElementById('email');
+       let phone = document.getElementById('phone');
+       let pass = document.getElementById('password');
+       let ton = document.getElementById('ton');
+       let flag = 1;
+
+       function validateform(){
+        // isNaN
+        if(text.value == 0){
+            document.getElementById('nameerror').innerHTML = "please fill your name"
+            flag = 0;
+        }
+        if(!isNaN(text.value)){
+            document.getElementById('nameerror').innerHTML = "enter valid name not a number"
+            flag = 0;
+        }
+        else if(text.value.length < 5){
+            document.getElementById('nameerror').innerHTML = "enter your full name"
+            flag = 0;
+        }
+        else{
+            document.getElementById('nameerror').innerHTML = '<img src="./badge-check-solid-24.png">'
+            flag = 1;
+
+        }
+        // return false;
+    // EMAIL
+        if(email.value == 0){
+            document.getElementById('emailerror').innerHTML = "please fill your email"
+            flag = 0;
+        }
+        else{
+            document.getElementById('emailerror').innerHTML ='<img src="./badge-check-solid-24.png">'
+            flag = 1;
+        }
+
+//PHONE
+
+        if(phone.value == 0){
+            document.getElementById('phoneerror').innerHTML = "please fill your no."
+            flag = 0;
+        }
+        else if(phone.value.length != 10) {
+            document.getElementById('phoneerror').innerHTML = "number should be 10 digit"
+            flag = 0;
+        }
+        else if(isNaN(phone.value)) {
+            document.getElementById('phoneerror').innerHTML = "enter only digit"
+            flag = 0;
+        }
+        
+        else if (phone.value.length = 10){
+            document.getElementById('phoneerror').innerHTML = '<img src="./badge-check-solid-24.png">'
+            flag = 1;
+        }
+// PASS
+        if(pass.value == 0){
+            document.getElementById('passerror').innerHTML = "please fill your password"
+            flag = 0;
+        }
+        else if(pass.value.length < 3) {
+            document.getElementById('passerror').innerHTML = "password atleast 4 digit long"
+            flag = 0;
+        }
+        else{
+            document.getElementById('passerror').innerHTML = '<img src="./badge-check-solid-24.png">'
+            flag = 1;
+        }
+        
+        
+        if(flag){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+    </script>
+</body>
+
+</html>
