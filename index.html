@@ -269,78 +269,87 @@
        let phone = document.getElementById('phone');
        let pass = document.getElementById('password');
        let ton = document.getElementById('ton');
-       let flag = 1;
+    //    let flag = 1;
+
+    // function clear(){
+
+    // }
 
        function validateform(){
+        // clear()
         // isNaN
+        let flag = true;
         if(text.value == 0){
             document.getElementById('nameerror').innerHTML = "please fill your name"
-            flag = 0;
+            flag = false;
         }
         if(!isNaN(text.value)){
             document.getElementById('nameerror').innerHTML = "enter valid name not a number"
-            flag = 0;
+            flag = false;
         }
         else if(text.value.length < 5){
             document.getElementById('nameerror').innerHTML = "enter your full name"
-            flag = 0;
+            flag = false;
         }
         else{
             document.getElementById('nameerror').innerHTML = '<img src="./badge-check-solid-24.png">'
-            flag = 1;
+            flag ;
 
         }
         // return false;
     // EMAIL
         if(email.value == 0){
             document.getElementById('emailerror').innerHTML = "please fill your email"
-            flag = 0;
+            flag = false;
         }
         else{
             document.getElementById('emailerror').innerHTML ='<img src="./badge-check-solid-24.png">'
-            flag = 1;
+            // flag = true;
         }
 
 //PHONE
 
         if(phone.value == 0){
             document.getElementById('phoneerror').innerHTML = "please fill your no."
-            flag = 0;
+            flag = false;
         }
         else if(phone.value.length != 10) {
             document.getElementById('phoneerror').innerHTML = "number should be 10 digit"
-            flag = 0;
+            flag = false;
         }
         else if(isNaN(phone.value)) {
             document.getElementById('phoneerror').innerHTML = "enter only digit"
-            flag = 0;
+            flag = false;
         }
         
         else if (phone.value.length = 10){
             document.getElementById('phoneerror').innerHTML = '<img src="./badge-check-solid-24.png">'
-            flag = 1;
+            // flag = true;
         }
+
 // PASS
+
         if(pass.value == 0){
             document.getElementById('passerror').innerHTML = "please fill your password"
-            flag = 0;
+            flag = false;
         }
         else if(pass.value.length < 3) {
             document.getElementById('passerror').innerHTML = "password atleast 4 digit long"
-            flag = 0;
+            flag = false;
         }
         else{
             document.getElementById('passerror').innerHTML = '<img src="./badge-check-solid-24.png">'
-            flag = 1;
+            // flag = true;
         }
         
+        return flag;
+        // if(flag){
+        //     return true;
+        // }
         
-        if(flag){
-            return true;
-        }
-        else{
-            return false;
-        }
+        // else{
+        //     return false;
+        // }
         
     }
     </script>
